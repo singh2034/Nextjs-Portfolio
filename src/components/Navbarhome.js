@@ -13,6 +13,9 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarMenuToggle,
 } from "@nextui-org/react";
 import { useState } from "react";
 import { BsWhatsapp, BsGithub } from "react-icons/bs";
@@ -23,10 +26,16 @@ const NavbarHome = () => {
   return (
     <>
       <div>
-        <Navbar shouldHideOnScroll>
-          <NavbarBrand>
-            <p className="font-bold text-xl text-inherit">Aayush Singh</p>
-          </NavbarBrand>
+        <Navbar shouldHideOnScroll onMenuOpenChange={setIsMenuOpen}>
+          <NavbarContent>
+            <NavbarMenuToggle
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              className="md:hidden"
+            />
+            <NavbarBrand>
+              <p className="font-bold text-xl text-inherit">Aayush Singh</p>
+            </NavbarBrand>
+          </NavbarContent>
           <NavbarContent
             className="hidden md:flex space-x-3 font-semibold"
             justify="center"
@@ -68,6 +77,11 @@ const NavbarHome = () => {
                       React Native Projects
                     </Link>
                   </DropdownItem>
+                  <DropdownItem>
+                    <Link color="foreground" href="#">
+                      Figma Designs
+                    </Link>
+                  </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
             </NavbarItem>
@@ -77,7 +91,7 @@ const NavbarHome = () => {
               </Link>
             </NavbarItem>
           </NavbarContent>
-          <NavbarContent justify="end" className="hidden md:flex">
+          <NavbarContent justify="end" className="sm:text-md md:flex">
             <NavbarItem>
               {/* pop over content */}
               <Popover placement="bottom" showArrow={true}>
@@ -126,6 +140,23 @@ const NavbarHome = () => {
               </Popover>
             </NavbarItem>
           </NavbarContent>
+          {/* mobile menu setup */}
+          <NavbarMenu>
+            <NavbarMenuItem className="shadow-lg p-5">
+              <Link color="foreground" className="w-full" href="#" size="lg">
+                Home
+              </Link>
+              <Link color="foreground" className="w-full" href="#" size="lg">
+                About
+              </Link>
+              <Link color="danger" className="w-full" href="#" size="lg">
+                Projects
+              </Link>
+              <Link color="foreground" className="w-full" href="#" size="lg">
+                Contact
+              </Link>
+            </NavbarMenuItem>
+          </NavbarMenu>
         </Navbar>
       </div>
     </>
